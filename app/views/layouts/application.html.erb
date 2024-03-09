@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PuplishEvents</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+    <body>
+      <%= render 'shared/header' %>
+        <div class="container">
+          <p class="notice text-info"><%= notice %></p>
+          <p class="alert text-danger"><%= alert %></p>
+        </div>
+        <div class="container">
+          <%= yield %>
+        </div>
+      <%= render 'shared/footer' %>  
+    </body>
+
+</html>

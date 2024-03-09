@@ -1,0 +1,33 @@
+%h3 Sent Invitations
+
+%table.table
+  %thead
+    %tr
+      %th Id
+      %th Event
+      %th Event Start At 
+      %th Invited User
+      %th Invited At
+      %th Confirm?
+      %th Confirm At
+      %th Location 
+  %tbody
+    - @invitations.each do |invitation|
+      %tr
+        %th
+          = invitation.id
+        %td
+          = link_to invitation.event.name, event_path(invitation.event)
+        %td
+          = invitation.event.start_at
+        %td
+          = invitation.receiver.email
+        %td
+          = invitation.event.created_at
+        %td    
+          = invitation.confirm
+        %td
+          = invitation.confirm_at
+        %td
+          = invitation.event.location.full_address  
+= will_paginate @invitations

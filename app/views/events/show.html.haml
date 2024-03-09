@@ -1,0 +1,27 @@
+- if policy(@event).create?
+  = link_to 'Send Invitation', new_event_invitation_path(@event), class: 'btn btn-success float-right'
+  = link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
+%p
+  %strong Name:
+  = @event.name
+%p
+  %strong Start at:
+  = @event.start_at
+%p
+  %strong End at:
+  = @event.end_at
+%p
+  %strong Location:
+  = link_to @event.location.full_address, location_path(@event.location)
+%p
+  %strong Creator:
+  = @event.creator.email
+- @event.images.each do |image|
+  %p
+    = image_tag image
+.d-flex.justify-content-between.align-items-center
+  = render partial: 'shared/like_unlike', locals: { obj: @event }
+%h4 Comments
+%ul.list-group
+  = render @event.comments
+= render partial: "comments/form", locals: {commentable: @event}

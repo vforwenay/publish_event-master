@@ -1,0 +1,35 @@
+- if current_user 
+  = link_to 'New Location', new_user_location_path(current_user), class: "btn btn-sm btn-outline-secondary float-right"
+
+%h3 Locations
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Lat
+      %th Lng
+      %th Country
+      %th State
+      %th City
+      %th Zipcode
+      %th Address Line 1
+      %th Address Line 2
+      %th Create
+      %th{colspan: "3"} Actions
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.name
+        %td= location.lat
+        %td= location.lng
+        %td= location.country
+        %td= location.state
+        %td= location.city
+        %td= location.zipcode
+        %td= location.address_line_1
+        %td= location.address_line_2
+        %td= location.creator.email
+        %td= link_to 'Show', location
+        %td= link_to 'Edit', edit_location_path(location)
+        %td= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }
+= will_paginate @locations

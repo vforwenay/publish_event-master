@@ -1,0 +1,6 @@
+%li.list-group-item
+  %b=comment.commenter.email
+  %br
+  = comment.comment_text
+  .d-flex.justify-content-between.align-items-center
+    = render partial: 'shared/like_unlike', locals: { obj: comment }

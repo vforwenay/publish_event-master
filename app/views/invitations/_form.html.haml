@@ -1,0 +1,14 @@
+= form_with(model: [@event], url: event_invitations_path(@event), method: :post, local: true) do |form|
+  - if @invitation.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(invitation.errors.count, "error")
+        prohibited this invitation from being saved:
+      %ul
+        - @invitation.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label :invite_users
+    = form.select(:invite_user_ids, option_invite_user, { prompt: "Select multiple invite users" }, { multiple: true,   class: 'form-control' })
+  .actions
+    = form.submit 'Send Invitations', class: 'btn btn-success'

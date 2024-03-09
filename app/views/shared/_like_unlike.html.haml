@@ -1,0 +1,24 @@
+- if current_user
+  .row.ml-auto.m-2
+    = link_to polymorphic_path(obj, action: "like"), method: :put , remote: :true, class: 'col-6' do
+      .text-center.row
+        .fas.fa-thumbs-up.text-success.mt-1
+        %div{:id => "like-count-#{obj.class.to_s.downcase}-#{obj.id}"}
+          = obj.get_upvotes.size
+    = link_to polymorphic_path(obj, action: "unlike"), method: :put , remote: :true, class: 'col-6' do
+      .text-center.row
+        .fas.fa-thumbs-down.text-secondary.mt-1
+        %div{:id => "unlike-count-#{obj.class.to_s.downcase}-#{obj.id}"}
+          = obj.get_downvotes.size
+- else
+  .row.ml-auto.m-2
+    .col-6
+      .text-center.row
+        .fas.fa-thumbs-up.text-success.mt-1
+        #like-count
+          = obj.get_upvotes.size
+    .col-6
+      .text-center.row
+        .fas.fa-thumbs-down.text-secondary.mt-1
+        #unlike-count
+          = obj.get_downvotes.size

@@ -1,0 +1,4 @@
+:plain
+  document.querySelector("#like-count-#{@object.class.to_s.downcase}-#{@object.id}").innerText = "#{@object.get_upvotes.size}"
+  document.querySelector("#unlike-count-#{@object.class.to_s.downcase}-#{@object.id}").innerText = "#{@object.get_downvotes.size}"
+  

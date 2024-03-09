@@ -1,0 +1,20 @@
+<h3>Congratulation!<h3>
+
+<p>You got a invitation! from <%=@sender.email %></p> 
+
+<p>You are invited for the event <%= @event.name %></p>
+
+<p><%= @event.description %></p>
+
+<p>Event time: <%= start_end_time(@event)%></p>
+
+<p><%= link_to (image_tag @event.images.first, withd: '100%', height: '400'), event_url(@event) %></p>
+
+<p><%= @event.location.full_address %></p>
+
+<p> If you are realy intrested to join the event please <%= link_to 'Click here', confirm_invitations_url(@invitation.token) %>
+
+
+
+
+

@@ -1,0 +1,23 @@
+- if current_user 
+  = link_to 'Create New', new_user_event_path(current_user), class: 'btn btn-sm btn-outline-secondary float-right'
+%h3 Events
+.album.py-5.bg-light
+  .container
+    .card-deck
+      - @events.each do |event|        
+        .card.mb-12{ style: "flex: 500px"}
+          = link_to image_tag(event.images.first, width: "100%", height: '255'), event_path(event), class: "card-img-top"
+          .card-body
+            %h5.card-title
+              = event.name
+            %p.card-text
+              = start_end_time(event)
+            .d-flex.justify-content-between.align-items-center
+              - if policy(event).edit?
+                .btn-group.pb-2
+                  = link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-outline-secondary'
+              = render partial: 'shared/like_unlike', locals: { obj: event } 
+                 
+            .card-footer.bg-transparent
+              = link_to event.location.name, location_path(event.location)
+= will_paginate @events
